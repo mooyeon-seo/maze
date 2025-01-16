@@ -110,10 +110,3 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- Thanks to all the contributors for making this possible.
-- Next.js documentation for the powerful React framework.
-- Various maze-solving algorithm tutorials available online.
-```
