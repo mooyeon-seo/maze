@@ -1,1 +1,1 @@
-export type Algorithm = 'astar' | 'bfs' | 'dfs' | 'dijkstra' | 'wallFollower' | 'recursiveBacktracking' | 'bidirectional';
+export type Algorithm = 'astar' | 'bfs' | 'dfs' | 'dijkstra' | 'bidirectional';
