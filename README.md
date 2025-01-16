@@ -6,11 +6,13 @@ This is a Next.js application that implements multiple algorithms to solve mazes
 - **BFS (Breadth-First Search)**
 - **Dijkstra**
 - **A\* (A-star)**
-- **Wall Follower (Left-hand and Right-hand Rule)**
-- **Recursive Backtracking**
 - **Bidirectional Search**
 
 Each algorithm solves mazes and visualizes the solution on the frontend.
+
+## TLDR
+
+Just try it out on [maze.insufficient.ca](http://maze.insufficient.ca)
 
 ## Requirements
 
