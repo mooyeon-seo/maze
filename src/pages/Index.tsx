@@ -8,8 +8,6 @@ import { astar } from '@/lib/algorithms/astar';
 import { bfs } from '@/lib/algorithms/bfs';
 import { dfs } from '@/lib/algorithms/dfs';
 import { dijkstra } from '@/lib/algorithms/dijkstra';
-import { wallFollower } from '@/lib/algorithms/wallFollower';
-import { recursiveBacktracking } from '@/lib/algorithms/recursiveBacktracking';
 import { bidirectional } from '@/lib/algorithms/bidirectional';
 import { Algorithm } from '@/lib/types';
 
@@ -175,7 +173,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-gray-50 py-8 px-1">
       <div className="max-w-6xl mx-auto space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold tracking-tight">I'm finding a way to get back to you, pinky grid!</h1>
@@ -203,7 +201,7 @@ const Index = () => {
         </div>
         
         <div className="flex flex-col items-center gap-8">
-          <div className="bg-white p-4 rounded-xl shadow-lg">
+          <div className="bg-white rounded-xl shadow-lg">
             <MazeGrid
               rows={GRID_ROWS}
               cols={GRID_COLS}

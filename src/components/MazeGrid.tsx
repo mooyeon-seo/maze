@@ -19,16 +19,19 @@ interface MazeGridProps {
 }
 
 const MazeGrid: React.FC<MazeGridProps> = ({ rows, cols, onCellClick, grid }) => {
+  // Calculate cell size based on the screen width to ensure usability on mobile
+  const cellSize = Math.min(window.innerWidth / (cols + 5), 30); // maximum size of 50px
+
   return (
     <div className="grid gap-[1px] bg-gray-200 p-1 rounded-lg shadow-inner" 
-         style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
+         style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)` }}>
       {grid.map((row, rowIndex) =>
         row.map((cell, colIndex) => (
           <div
             key={`${rowIndex}-${colIndex}`}
             onClick={() => onCellClick(rowIndex, colIndex)}
             className={cn(
-              "w-6 h-6 transition-all duration-200 rounded-sm cursor-pointer",
+              "transition-all duration-200 rounded-sm cursor-pointer",
               {
                 "bg-maze-wall": cell.isWall,
                 "bg-maze-start": cell.isStart,
@@ -39,6 +42,8 @@ const MazeGrid: React.FC<MazeGridProps> = ({ rows, cols, onCellClick, grid }) =>
               }
             )}
             style={{
+              width: `${cellSize}px`,
+              height: `${cellSize}px`,
               '--visited-color': 'rgb(16, 88, 160)',
               '--path-color': 'rgb(0, 184, 148)',
             } as React.CSSProperties}
