@@ -144,6 +144,20 @@ const Index = () => {
       };
 
       const onPathFound = (path: Position[]) => {
+        // Ensure the path contains both start and end positions
+        if (
+          !path.find(
+            (node) => node.row == startPos.row && node.col == startPos.col,
+          ) ||
+          !path.find((node) => node.row == endPos.row && node.col == endPos.col)
+        ) {
+          console.log(path);
+          console.log(path.length);
+          console.log(path.includes(startPos), startPos);
+          console.log(path.includes(endPos), endPos);
+          toast.error("No valid path found!");
+          throw new Error("No valid path found!");
+        }
         setGrid((prevGrid) => {
           const newGrid = [...prevGrid.map((row) => [...row])];
           path.forEach((pos) => {
@@ -250,4 +264,3 @@ const Index = () => {
 };
 
 export default Index;
-

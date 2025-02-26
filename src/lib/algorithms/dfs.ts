@@ -7,11 +7,13 @@ export const dfs = async (
   end: Position,
   onVisit: (pos: Position) => void,
   onPathFound: (path: Position[]) => void,
-  speed: number
+  speed: number,
 ) => {
   const rows = grid.length;
   const cols = grid[0].length;
-  
+
+  let foundPath = false;
+
   const isValid = (pos: Position) => {
     return (
       pos.row >= 0 &&
@@ -28,7 +30,7 @@ export const dfs = async (
 
   const dfsRecursive = async (current: Position) => {
     if (found) return;
-    
+
     const key = `${current.row},${current.col}`;
     visited.add(key);
     onVisit(current);
@@ -38,14 +40,15 @@ export const dfs = async (
       found = true;
       const path: Position[] = [];
       let currentPos = `${end.row},${end.col}`;
-      
+
       while (currentPos) {
-        const [row, col] = currentPos.split(',').map(Number);
+        const [row, col] = currentPos.split(",").map(Number);
         path.unshift({ row, col });
-        currentPos = parent.get(currentPos) ?? '';
+        currentPos = parent.get(currentPos) ?? "";
       }
-      
+
       onPathFound(path);
+      foundPath = true;
       return;
     }
 
@@ -71,4 +74,8 @@ export const dfs = async (
   };
 
   await dfsRecursive(start);
+  if (!foundPath) {
+    onPathFound([]);
+  }
 };
+

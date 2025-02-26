@@ -7,11 +7,11 @@ export const bfs = async (
   end: Position,
   onVisit: (pos: Position) => void,
   onPathFound: (path: Position[]) => void,
-  speed: number
+  speed: number,
 ) => {
   const rows = grid.length;
   const cols = grid[0].length;
-  
+
   const isValid = (pos: Position) => {
     return (
       pos.row >= 0 &&
@@ -25,7 +25,7 @@ export const bfs = async (
   const queue: Position[] = [start];
   const visited = new Set<string>();
   const parent = new Map<string, string>();
-  
+
   visited.add(`${start.row},${start.col}`);
 
   while (queue.length > 0) {
@@ -36,13 +36,13 @@ export const bfs = async (
     if (current.row === end.row && current.col === end.col) {
       const path: Position[] = [];
       let currentPos = `${end.row},${end.col}`;
-      
+
       while (currentPos) {
-        const [row, col] = currentPos.split(',').map(Number);
+        const [row, col] = currentPos.split(",").map(Number);
         path.unshift({ row, col });
-        currentPos = parent.get(currentPos) ?? '';
+        currentPos = parent.get(currentPos) ?? "";
       }
-      
+
       onPathFound(path);
       return;
     }
@@ -68,4 +68,6 @@ export const bfs = async (
       }
     }
   }
+  onPathFound([]);
 };
+
