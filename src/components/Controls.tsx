@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectContent,
@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Algorithm } from '@/lib/types';
+import { Algorithm } from "@/lib/types";
 
 interface ControlsProps {
   onStartVisualization: () => void;
@@ -49,7 +49,7 @@ const Controls: React.FC<ControlsProps> = ({
           <SelectItem value="bidirectional">Bidirectional Search</SelectItem>
         </SelectContent>
       </Select>
-      
+
       <div className="flex gap-2">
         <Button
           onClick={onStartVisualization}
@@ -67,7 +67,7 @@ const Controls: React.FC<ControlsProps> = ({
           Clear Grid
         </Button>
       </div>
-      
+
       <Button
         onClick={onGenerateMaze}
         variant="secondary"
@@ -76,13 +76,13 @@ const Controls: React.FC<ControlsProps> = ({
       >
         Generate Random Maze
       </Button>
-      
+
       <div className="space-y-2">
         <label className="text-sm font-medium">Animation Speed</label>
         <Slider
           defaultValue={[speed]}
-          max={100}
-          min={1}
+          max={200}
+          min={70}
           step={1}
           onValueChange={onSpeedChange}
           disabled={isVisualizing}
@@ -93,3 +93,4 @@ const Controls: React.FC<ControlsProps> = ({
 };
 
 export default Controls;
+

@@ -27,7 +27,7 @@ interface Cell {
 const Index = () => {
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [isVisualizing, setIsVisualizing] = useState(false);
-  const [speed, setSpeed] = useState(50);
+  const [speed, setSpeed] = useState(90);
   const [algorithm, setAlgorithm] = useState<Algorithm>("astar");
   const [startPos, setStartPos] = useState<Position>({ row: 1, col: 1 });
   const [endPos, setEndPos] = useState<Position>({
@@ -37,6 +37,8 @@ const Index = () => {
   const [placementMode, setPlacementMode] = useState<"wall" | "start" | "end">(
     "wall",
   );
+
+  const [isMousePressed, setIsMousePressed] = useState(false);
 
   const initializeGrid = useCallback(() => {
     const newGrid: Cell[][] = Array(GRID_ROWS)
@@ -90,6 +92,23 @@ const Index = () => {
 
       return newGrid;
     });
+  };
+
+  const handleMouseDown = (row: number, col: number) => {
+    if (isVisualizing) return;
+
+    setIsMousePressed(true);
+    handleCellClick(row, col);
+  };
+
+  const handleMouseEnter = (row: number, col: number) => {
+    if (!isMousePressed || isVisualizing) return;
+
+    handleCellClick(row, col);
+  };
+
+  const handleMouseUp = () => {
+    setIsMousePressed(false);
   };
 
   const clearGrid = () => {
@@ -151,10 +170,6 @@ const Index = () => {
           ) ||
           !path.find((node) => node.row == endPos.row && node.col == endPos.col)
         ) {
-          console.log(path);
-          console.log(path.length);
-          console.log(path.includes(startPos), startPos);
-          console.log(path.includes(endPos), endPos);
           toast.error("No valid path found!");
           throw new Error("No valid path found!");
         }
@@ -204,6 +219,10 @@ const Index = () => {
     }
   };
 
+  useEffect(() => {
+    generateRandomMaze();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-1">
       <div className="max-w-6xl mx-auto space-y-8">
@@ -212,8 +231,8 @@ const Index = () => {
             Maze: Path Finder
           </h1>
           <p className="text-gray-600">
-            Click to draw walls, visualize pathfinding algorithms, and generate
-            random mazes
+            Click and drag slowly to draw walls, visualize pathfinding
+            algorithms, and generate random mazes
           </p>
           <div className="flex justify-center gap-2">
             <button
@@ -244,6 +263,9 @@ const Index = () => {
               cols={GRID_COLS}
               grid={grid}
               onCellClick={handleCellClick}
+              onMouseDown={handleMouseDown}
+              onMouseEnter={handleMouseEnter}
+              onMouseUp={handleMouseUp}
             />
           </div>
 
