@@ -1,8 +1,8 @@
-import { Position } from "../types";
+import { Position, Cell } from "../types";
 import { sleep } from "../utils";
 
 export const dijkstra = async (
-  grid: any[][],
+  grid: Cell[][],
   start: Position,
   end: Position,
   onVisit: (pos: Position) => void,
@@ -95,4 +95,3 @@ export const dijkstra = async (
   }
   onPathFound([]);
 };
-

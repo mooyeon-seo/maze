@@ -9,20 +9,10 @@ import { bfs } from "@/lib/algorithms/bfs";
 import { dfs } from "@/lib/algorithms/dfs";
 import { dijkstra } from "@/lib/algorithms/dijkstra";
 import { bidirectional } from "@/lib/algorithms/bidirectional";
-import { Algorithm } from "@/lib/types";
+import { Algorithm, Cell } from "@/lib/types";
 
 const GRID_ROWS = 25;
 const GRID_COLS = 35;
-
-interface Cell {
-  row: number;
-  col: number;
-  isWall: boolean;
-  isStart: boolean;
-  isEnd: boolean;
-  isVisited: boolean;
-  isPath: boolean;
-}
 
 const Index = () => {
   const [grid, setGrid] = useState<Cell[][]>([]);

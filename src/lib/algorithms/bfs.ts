@@ -1,8 +1,8 @@
-import { Position } from "../types";
+import { Position, Cell } from "../types";
 import { sleep } from "../utils";
 
 export const bfs = async (
-  grid: any[][],
+  grid: Cell[][],
   start: Position,
   end: Position,
   onVisit: (pos: Position) => void,
@@ -70,4 +70,3 @@ export const bfs = async (
   }
   onPathFound([]);
 };
-
