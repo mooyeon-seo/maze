@@ -253,9 +253,6 @@ const Index = () => {
               cols={GRID_COLS}
               grid={grid}
               onCellClick={handleCellClick}
-              onMouseDown={handleMouseDown}
-              onMouseEnter={handleMouseEnter}
-              onMouseUp={handleMouseUp}
             />
           </div>
 
